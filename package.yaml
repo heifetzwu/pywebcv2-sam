@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'sam-pywebcv2
+
+  Sample SAM Template for sam-pywebcv2
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  PywebFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://hftz-general/c2566fdee4971629e9ce904e069a4178
+      Handler: web.handler
+      Runtime: python3.12
+      Events:
+        pyweb:
+          Type: Api
+          Properties:
+            Path: /
+            Method: any
+Outputs:
+  PywebApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/pyweb/
+  PywebFunction:
+    Description: Hello World Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - PywebFunction
+      - Arn
+  PywebFunctionIamRole:
+    Description: Implicit IAM Role created for Hello World function
+    Value:
+      Fn::GetAtt:
+      - PywebFunctionRole
+      - Arn
