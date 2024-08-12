@@ -16,12 +16,35 @@ Resources:
     Properties:
       CodeUri: pywebcv2/
       Handler: web.handler
-      Runtime: python3.12
+      Runtime: python3.11
+      Layers:
+        - arn:aws:lambda:us-east-1:975050204353:layer:pywebcv2:3
+      
+     
+  # TextProcessorLayer:
+  #   Type: AWS::Serverless::LayerVersion
+  #   Properties:
+  #     LayerName: TextProcessorLayer
+  #     Description: Text processor dependencies
+  #     ContentUri: 'layers/text-processor-layer/'
+  #     CompatibleRuntimes:
+  #       - nodejs18.x
+  #   Metadata:
+  #     BuildMethod: nodejs18.x          
+
+  
+      Events:
+        Pyweb:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+    
       Events:
         pyweb:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /
+            Path: /{proxy+}
             Method: any
 
 Outputs:

@@ -12,7 +12,7 @@ from mangum import Mangum
 app = FastAPI(root_path=settings.PROXY_PATH)
 # handler = Mangum(app)  # Entry point for AWS Lambda.
 handler = Mangum(app, api_gateway_base_path=settings.PROXY_PATH)  # Entry point for AWS Lambda.
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/assets", StaticFiles(directory="resource/cv2/assets"), name="assets")
 
 templates = Jinja2Templates(directory="resource")
