@@ -12,7 +12,7 @@ Resources:
   PywebFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://hftz-general/89af9f9dee3d6a6151a1905b85f84adc
+      CodeUri: s3://hftz-general/a9d2e752577c8b6d7cb68cb3134636bb
       Handler: web.handler
       Runtime: python3.11
       Layers:
