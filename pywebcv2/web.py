@@ -27,6 +27,13 @@ async def root(request: Request):
     print ("handler=", handler.config)
     return templates_cv.TemplateResponse("index.html", context={"request": request})
 
+@app.get("/index.html", response_class=HTMLResponse)
+async def root(request: Request):
+    # return templates.TemplateResponse("index2.html", {"request": request})
+    print ("handler=", handler)
+    print ("handler=", handler.config)
+    return templates_cv.TemplateResponse("index.html", context={"request": request})
+
 @app.get("/index_en.html", response_class=HTMLResponse)
 async def root(request: Request):
     # return templates.TemplateResponse("index2.html", {"request": request})
